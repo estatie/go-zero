@@ -1,0 +1,81 @@
+Subject: [PATCH] Rename folders.
+---
+Index: tools/goctl/api/gogen/vars.go
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tools/goctl/api/gogen/vars.go b/tools/goctl/api/gogen/vars.go
+--- a/tools/goctl/api/gogen/vars.go	(revision 6c9cf261e0a4548f0ad1d3d8f360b62944d46717)
++++ b/tools/goctl/api/gogen/vars.go	(date 1683646619096)
+@@ -1,13 +1,13 @@
+ package gogen
+ 
+ const (
+-	internal      = "internal/"
+-	typesPacket   = "types"
+-	configDir     = internal + "config"
++	internal      = ""
++	typesPacket   = "dto"
++	configDir     = internal + "svc"
+ 	contextDir    = internal + "svc"
+-	handlerDir    = internal + "handler"
+-	logicDir      = internal + "logic"
+-	middlewareDir = internal + "middleware"
++	handlerDir    = internal + "web"
++	logicDir      = internal + "use"
++	middlewareDir = internal + "web"
+ 	typesDir      = internal + typesPacket
+ 	groupProperty = "group"
+ )
+Index: tools/goctl/rpc/generator/mkdir.go
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tools/goctl/rpc/generator/mkdir.go b/tools/goctl/rpc/generator/mkdir.go
+--- a/tools/goctl/rpc/generator/mkdir.go	(revision 6c9cf261e0a4548f0ad1d3d8f360b62944d46717)
++++ b/tools/goctl/rpc/generator/mkdir.go	(date 1682756244516)
+@@ -14,7 +14,7 @@
+ const (
+ 	wd       = "wd"
+ 	etc      = "etc"
+-	internal = "internal"
++	internal = ""
+ 	config   = "config"
+ 	logic    = "logic"
+ 	server   = "server"
+@@ -61,7 +61,7 @@
+ 	inner := make(map[string]Dir)
+ 	etcDir := filepath.Join(ctx.WorkDir, "etc")
+ 	clientDir := filepath.Join(ctx.WorkDir, "client")
+-	internalDir := filepath.Join(ctx.WorkDir, "internal")
++	internalDir := ctx.WorkDir
+ 	configDir := filepath.Join(internalDir, "config")
+ 	logicDir := filepath.Join(internalDir, "logic")
+ 	serverDir := filepath.Join(internalDir, "server")
+Index: tools/goctl/quickstart/mono.go
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tools/goctl/quickstart/mono.go b/tools/goctl/quickstart/mono.go
+--- a/tools/goctl/quickstart/mono.go	(revision 6c9cf261e0a4548f0ad1d3d8f360b62944d46717)
++++ b/tools/goctl/quickstart/mono.go	(date 1682759383177)
+@@ -60,11 +60,11 @@
+ 	logx.Must(gogen.GoCommand(nil, nil))
+ 	etcFile := filepath.Join(apiWorkDir, "etc", "greet.yaml")
+ 	logx.Must(ioutil.WriteFile(etcFile, []byte(apiEtcContent), 0o666))
+-	logicFile := filepath.Join(apiWorkDir, "internal", "logic", "pinglogic.go")
+-	svcFile := filepath.Join(apiWorkDir, "internal", "svc", "servicecontext.go")
+-	configPath := filepath.Join(apiWorkDir, "internal", "config")
+-	svcPath := filepath.Join(apiWorkDir, "internal", "svc")
+-	typesPath := filepath.Join(apiWorkDir, "internal", "types")
++	logicFile := filepath.Join(apiWorkDir, "logic", "pinglogic.go")
++	svcFile := filepath.Join(apiWorkDir, "svc", "servicecontext.go")
++	configPath := filepath.Join(apiWorkDir, "config")
++	svcPath := filepath.Join(apiWorkDir, "svc")
++	typesPath := filepath.Join(apiWorkDir, "types")
+ 	svcPkg, err := golang.GetParentPackage(svcPath)
+ 	logx.Must(err)
+ 	typesPkg, err := golang.GetParentPackage(typesPath)

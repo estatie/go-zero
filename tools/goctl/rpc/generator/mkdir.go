@@ -14,7 +14,7 @@ import (
 const (
 	wd       = "wd"
 	etc      = "etc"
-	internal = "internal"
+	internal = ""
 	config   = "config"
 	logic    = "logic"
 	server   = "server"
@@ -61,7 +61,7 @@ func mkdir(ctx *ctx.ProjectContext, proto parser.Proto, _ *conf.Config, c *ZRpcC
 	inner := make(map[string]Dir)
 	etcDir := filepath.Join(ctx.WorkDir, "etc")
 	clientDir := filepath.Join(ctx.WorkDir, "client")
-	internalDir := filepath.Join(ctx.WorkDir, "internal")
+	internalDir := ctx.WorkDir
 	configDir := filepath.Join(internalDir, "config")
 	logicDir := filepath.Join(internalDir, "logic")
 	serverDir := filepath.Join(internalDir, "server")

@@ -3,6 +3,7 @@ package gogen
 import (
 	_ "embed"
 	"fmt"
+	"github.com/iancoleman/strcase"
 	"path"
 	"strings"
 
@@ -46,7 +47,7 @@ func genHandler(dir, rootPkg string, cfg *config.Config, group spec.Group, route
 		ImportPackages: genHandlerImports(group, route, rootPkg),
 		HandlerName:    handler,
 		RequestType:    util.Title(route.RequestTypeName()),
-		LogicName:      logicName,
+		LogicName:      strcase.ToCamel(logicName),
 		LogicType:      strings.Title(getLogicName(route)),
 		Call:           strings.Title(strings.TrimSuffix(handler, "Handler")),
 		HasResp:        len(route.ResponseTypeName()) > 0,
@@ -88,7 +89,7 @@ func genHandlers(dir, rootPkg string, cfg *config.Config, api *spec.ApiSpec) err
 
 func genHandlerImports(group spec.Group, route spec.Route, parentPkg string) string {
 	imports := []string{
-		fmt.Sprintf("\"%s\"", pathx.JoinPackages(parentPkg, getLogicFolderPath(group, route))),
+		// fmt.Sprintf("\"%s\"", pathx.JoinPackages(parentPkg, getLogicFolderPath(group, route))),
 		fmt.Sprintf("\"%s\"", pathx.JoinPackages(parentPkg, contextDir)),
 	}
 	if len(route.RequestTypeName()) > 0 {
