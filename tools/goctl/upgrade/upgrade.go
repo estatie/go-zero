@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"runtime"
 
+	"github.com/estatie/go-zero/tools/goctl/rpc/execx"
 	"github.com/spf13/cobra"
-	"github.com/zeromicro/go-zero/tools/goctl/rpc/execx"
 )
 
 // upgrade gets the latest goctl by
