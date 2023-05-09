@@ -1,4 +1,4 @@
-module github.com/zeromicro/go-zero/tools/goctl
+module github.com/estatie/go-zero/tools/goctl
 
 go 1.18
 
